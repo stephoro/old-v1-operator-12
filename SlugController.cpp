@@ -378,7 +378,7 @@ void SlugController::setSlug(Slug *slug){
                 Position * next = foundPath[pathindex + 1];
                 printf("(%i,%i) to (%i,%i)\n",cur->x,cur->y,next->x,next->y);
                 SlugSegment * atPos = map->getSlug(next->x,next->y);
-                if(atPos!=NULL){
+                if(atPos!=NULL && atPos->getOwner() != slug){
                     printf("ATTACK!!!\n");
                     slug->startAttack();
                     break;

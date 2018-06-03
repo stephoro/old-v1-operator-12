@@ -149,6 +149,7 @@ private:
             }else if((status&MAP_TILE_OCCUPIED_OTHER)){
                 SlugSegment * other = map->getSlug(ax, ay);
                 if(other != NULL && inquisitor != NULL){
+                    printf("early now: %i & %i ?",other->getOwner()->team, inquisitor->team);
                     if(!(other->getOwner()->team & inquisitor->team)){
                         Position * neighbor = grid[ax][ay];
                         if(neighbor == NULL)
