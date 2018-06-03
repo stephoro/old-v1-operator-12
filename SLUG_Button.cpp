@@ -28,9 +28,9 @@ SLUG_Button::SLUG_Button(int x, int y, int w, int h, char * name, char * colors,
     rect->h = h;
     SDL_Color fg = SDL_Color();
     fg.r = colors[5];
-    fg.r = colors[6];
-    fg.r = colors[7];
-    fg.r = colors[4];
+    fg.g = colors[6];
+    fg.b = colors[7];
+    fg.a = colors[4];
     texture = textureFromUnicode(name, menuFont, fg, tw, th);
     textureFillRect->x = x + (w-tw)/2;
     textureFillRect->y = y + (h-th)/2;

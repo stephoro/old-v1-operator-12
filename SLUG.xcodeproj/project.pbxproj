@@ -10,6 +10,7 @@
 		1803F3371D233237004CC4DA /* CharArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1803F3351D233237004CC4DA /* CharArray.cpp */; };
 		1818776D1C9ED6A300B4F9AC /* SLUG_Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1818776B1C9ED6A300B4F9AC /* SLUG_Button.cpp */; };
 		1822B9271D356B9300A45F8F /* Hashmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1822B9251D356B9300A45F8F /* Hashmap.cpp */; };
+		1822B92E1D36D3AD00A45F8F /* AudioPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1822B92C1D36D3AD00A45F8F /* AudioPlayer.cpp */; };
 		1828026F1C9BB0F9003FF056 /* FileEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1828026D1C9BB0F9003FF056 /* FileEditor.cpp */; };
 		182802721C9CC31E003FF056 /* SlugData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182802701C9CC31E003FF056 /* SlugData.cpp */; };
 		182802781C9D975A003FF056 /* SlugAttack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182802761C9D975A003FF056 /* SlugAttack.cpp */; };
@@ -90,6 +91,8 @@
 		1818776C1C9ED6A300B4F9AC /* SLUG_Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLUG_Button.h; sourceTree = "<group>"; };
 		1822B9251D356B9300A45F8F /* Hashmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hashmap.cpp; sourceTree = "<group>"; };
 		1822B9261D356B9300A45F8F /* Hashmap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Hashmap.hpp; sourceTree = "<group>"; };
+		1822B92C1D36D3AD00A45F8F /* AudioPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioPlayer.cpp; sourceTree = "<group>"; };
+		1822B92D1D36D3AD00A45F8F /* AudioPlayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AudioPlayer.hpp; sourceTree = "<group>"; };
 		1828026D1C9BB0F9003FF056 /* FileEditor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileEditor.cpp; sourceTree = "<group>"; };
 		1828026E1C9BB0F9003FF056 /* FileEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileEditor.h; sourceTree = "<group>"; };
 		182802701C9CC31E003FF056 /* SlugData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SlugData.cpp; sourceTree = "<group>"; };
@@ -337,6 +340,8 @@
 				18ACF5421D32BB8F00F27AF1 /* SDL_image.xcodeproj */,
 				944A65681957463F0094A81E /* SDL.xcodeproj */,
 				FD77A09C0E26BDE500F39101 /* main.cpp */,
+				1822B92D1D36D3AD00A45F8F /* AudioPlayer.hpp */,
+				1822B92C1D36D3AD00A45F8F /* AudioPlayer.cpp */,
 				18CA00A21C9F3F7D00C160F6 /* gameplay.h */,
 				18CA00A11C9F3F7D00C160F6 /* gameplay.cpp */,
 				18ACF5581D33D01B00F27AF1 /* LoadFont.cpp */,
@@ -541,6 +546,7 @@
 				182802781C9D975A003FF056 /* SlugAttack.cpp in Sources */,
 				1818776D1C9ED6A300B4F9AC /* SLUG_Button.cpp in Sources */,
 				18C18D211C96388E00C0A4D5 /* Interactable.cpp in Sources */,
+				1822B92E1D36D3AD00A45F8F /* AudioPlayer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

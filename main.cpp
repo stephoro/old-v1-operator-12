@@ -46,6 +46,7 @@ Swipable * swiper;
 DrawStack * mainStack;
 InputStack * interactionStack;
 SDL_Rect screenBounds;
+SDL_Rect screenPoints;
 SDL_Renderer *globalRenderer;
 SlugData ** archetypes;
 TurnManager * playerTurnManager;
@@ -186,6 +187,8 @@ main(int argc, char *argv[])
         return 1;
     }
     
+    
+    
     if(isRetina){
         int a = 0, b = 0;
         isRetina = false;
@@ -195,7 +198,10 @@ main(int argc, char *argv[])
             isRetina = true;
         }
     }
-    
+    screenPoints.x = 0;
+    screenPoints.y = 0;
+    screenPoints.w = screenBounds.w;
+    screenPoints.h = screenBounds.h;
     screenBounds.w *= RETINA_FACTOR;
     screenBounds.h *= RETINA_FACTOR;
     
@@ -208,3 +214,7 @@ main(int argc, char *argv[])
     
     return 0;
 }
+
+
+
+

@@ -22,6 +22,15 @@ TurnManager::TurnManager(){
     isMyTurn = false;
 }
 
+TurnManager::~TurnManager(){
+    if(turnManagerList != NULL){
+        delete turnManagerList;
+        turnManagerList = NULL;
+    }
+    managedSlugs->drain();
+    delete managedSlugs;
+}
+
 bool TurnManager::isOwnTurn(){
     return isMyTurn;
 }

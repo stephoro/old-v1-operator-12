@@ -33,6 +33,7 @@ public:
     void removeSlug(Slug * slug);
     void slugDone();
     TurnManager();
+    ~TurnManager();
 };
 
 #endif /* defined(__SLUG__TurnManager__) */

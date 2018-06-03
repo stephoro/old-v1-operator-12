@@ -130,7 +130,6 @@ int gameplayMain(){
     
     playerTurnManager->newTurn();
     */
-    SpriteSheet * buttonImage = new SpriteSheet("images/btnNoAction.png", 246, 38, 246/2, 38/2);
     
     
     char * colors = new char[8];
@@ -141,13 +140,13 @@ int gameplayMain(){
     colors[2] = 0;
     colors[3] = 0;
 
-    colors[1] = 255;
-    colors[2] = 255;
-    colors[3] = 255;
+    colors[5] = 255;
+    colors[6] = 255;
+    colors[7] = 255;
     
     
 
-    SLUG_Button * button2 = new SLUG_Button(246/2*RETINA_FACTOR, 40/2*RETINA_FACTOR, 246, 38, copyStr("Actions"), colors, &btnAttack);
+    SLUG_Button * button2 = new SLUG_Button(screenBounds.w/2-246/4*RETINA_FACTOR, 20*RETINA_FACTOR, 246/2*RETINA_FACTOR, 38/2*RETINA_FACTOR, copyStr("Actions"), colors, &btnAttack);
     interactionLayer->add(button2);
     mapLayer->add(button2);
     
@@ -243,6 +242,8 @@ int gameplayMain(){
     }
     //delete testMenu;
     SlugFileSystem->drain();
+    delete playerTurnManager; // auto deletes turn manager list
+    delete enemyTurnManager;
     delete SlugFileSystem;
     delete mainStack;
     delete button2;
