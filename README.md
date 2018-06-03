@@ -4,4 +4,4 @@ This was the previous version of Operator 12, built in 2016 using C++/SDL2 for i
 
 New Version at my [operator-12 repo](https://github.com/stephoro/operator-12)
 
-[!screenshot](./Screenshot.png)
+![screenshot](./Screenshot.png)
