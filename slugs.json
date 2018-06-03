@@ -1,0 +1,66 @@
+var enemies = [
+{
+name: "Sentinel",
+color: "orange",
+size: 3,
+move: 1,
+attacks: [{range:1, hit:2}]
+},
+{
+name: "Watchman",
+color: "pink",
+size: 2,
+move: 1,
+attacks: [{range:2, hit:2}]
+},
+{
+name: "Guard Pup",
+color: "yellow orange",
+size: 2,
+move: 3,
+attacks: [{range:1, hit:2}]
+}
+];
+
+var goodies = [
+{
+name: "Slingshot",
+cost: 750,
+color: "turquoise",
+size: 2,
+move: 2,
+attacks: [{name: "stone", range:3, hit:1}]
+},
+{
+name: "Hack",
+cost: 500,
+color: "Light Blue",
+size: 4,
+move: 2,
+attacks: [{name: "slice", range:1, hit:2}]
+},
+{
+name: "Bug",
+cost: 750,
+color: "acid green",
+size: 1,
+move: 5,
+attacks: [{name: "glitch", range:1, hit:2}]
+},
+{
+name: "Data Doctor",
+cost: 500,
+color: "blue",
+size: 5,
+move: 4,
+attacks: [{name: "grow", range:1, hit:-2}]
+},
+{
+name: "Bit Man",
+cost: 250,
+color: "yellow acid green",
+size: 3,
+move: 3,
+attacks: [{name: "Zero", range:1, removeTile:1},{name: "One", range:1, addTile:1}]
+},
+];

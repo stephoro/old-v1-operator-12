@@ -1,0 +1,102 @@
+spritesheet: "./images/headsprites.png" 28 28 28 28
+Slugs:8
+Slug:0
+     name:"Sentinel"
+     color: 252 152 0
+     size:3
+     move:1
+     sprite: 1
+     abilities:1
+          attack:0
+               title: "Cut"
+               range:1
+               hit:2
+Slug:1
+     name: "Watchman"
+     price:250
+     color: 255 37 138
+     size: 2
+     move: 1
+     sprite: 2
+     abilities:1
+          attack:0
+               title: "Phaser"
+               range:2
+               hit:2
+Slug:2
+     name: "Guard Pup"
+     price:250
+     color: 252 187 0
+     size: 2
+     move: 3
+     sprite: 5
+     abilities:1
+          attack:0
+               title: "Byte"
+               range:1
+               hit:2
+Slug:3
+     name: "Slingshot"
+     price:750
+     color: 0 217 165
+     size: 2
+     move: 2
+     sprite: 3
+     abilities:1
+          attack:0
+               title: "Stone"
+               range:3
+               hit:1
+Slug:4
+     name: "Hack"
+     price:500
+     color: 0 199 252
+     size: 4
+     move: 2
+     sprite: 0
+     abilities:1
+          attack:0
+               title: "Slice"
+               range:1
+               hit:2
+Slug:5
+     name: "Bug"
+     price:750
+     color: 132 252 0
+     size: 1
+     move: 5
+     sprite: 6
+     abilities:1
+          attack:0
+               title: "Glitch"
+               range:1
+               hit:2
+Slug:6
+     name: "Data Doctor"
+     price:500
+     color: 0 51 249
+     size: 5
+     move: 4
+     sprite: 8
+     abilities:1
+          attack:0
+               title: "Grow"
+               range:1
+               hit:-2
+Slug:7
+     name: "Bit Man"
+     price:250
+     color: 182 252 0
+     size: 3
+     move: 3
+     sprite: 7
+     abilities:2
+          attack:0
+               title: "Zero"
+               range:1
+               hit:0
+          attack:1
+               title: "One"
+               range:1
+               hit:0
+END
