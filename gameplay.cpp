@@ -84,6 +84,7 @@ int gameplayMain(){
     interactionStack = new InputStack();
     InputLayer * interactionLayer = interactionStack->expandLayers();
     DrawLayer * mapLayer = mainStack->expandLayers();
+    
     playerTurnManager = new TurnManager(0x1);
     TurnManager * enemyTurnManager = new TurnManager(0x2);
     
@@ -97,6 +98,7 @@ int gameplayMain(){
     
     
     slugController = new SlugController();
+    slugController->playerTeamMask = 0x1;
     mapLayer->add(slugController);
     map->controller = slugController;
     SlugFile * loadedSlugs = new SlugFile(copyStr("images/test.dat"));
@@ -109,8 +111,9 @@ int gameplayMain(){
     slugHeadSheet = new SpriteSheet("images/headsprites.png",28*2,28*2,28,28);
     doneCheckmark = slugHeadSheet->getSprite(0, 28*2, 20, 20, 10*RETINA_FACTOR, 10*RETINA_FACTOR);
     
-    playerTurnManager->addSlug(new Slug(28, 4, 0, 0, loadedSlugs->archetypes[0]));
-    enemyTurnManager->addSlug(new Slug(28, 4, 5, 7, loadedSlugs->archetypes[1]));
+    Slug* s = new Slug(28, 4, 0, 0, loadedSlugs->archetypes[0], playerTurnManager);
+    s = new Slug(28, 4, 5, 6, loadedSlugs->archetypes[1], enemyTurnManager);
+
 
     playerTurnManager->newTurn();
 

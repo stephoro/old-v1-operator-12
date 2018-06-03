@@ -56,7 +56,7 @@ public:
     TurnManager * manager;
     LinkedList<Slug>::Node<Slug> * nodeRef;
     SDL_Texture * sprite;
-    Slug(int size, int inset, int x, int y, SlugData * data);
+    Slug(int size, int inset, int x, int y, SlugData * data, TurnManager * manager);
     ~Slug();
     void move(int direction);
     int getX();

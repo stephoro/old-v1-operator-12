@@ -27,9 +27,9 @@ private:
 protected:
     Uint32 team;
     LinkedList<Slug> * managedSlugs;
-    QuadTree<SlugSegment> * segmentMap;
 public:
-    Slug * getClosestEnemy();
+    QuadTree<SlugSegment> * segmentMap;
+    SlugSegment * getClosestEnemy(Slug * closeTo);
     int numberOfSlugsTillTurnOver;
     LinkedList<TurnManager>::Node<TurnManager> * nodeRef;
     bool isOwnedSlug(Slug * slug);

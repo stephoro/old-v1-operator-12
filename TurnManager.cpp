@@ -39,7 +39,7 @@ bool TurnManager::isOwnTurn(){
 }
 
 void TurnManager::addSlug(Slug *slug){
-    slug->team |= team;
+    slug->team = team;
     slug->nodeRef = managedSlugs->add(slug);
     slug->manager = this;
     numberOfSlugsTillTurnOver++;
@@ -47,25 +47,29 @@ void TurnManager::addSlug(Slug *slug){
 
 void TurnManager::removeSlug(Slug *slug){
     managedSlugs->remove(slug->nodeRef);
+    printf("managed slugs now %i\n",managedSlugs->getSize());
     if(!slug->getIsDone()){
+        printf("Slug %s not done!\n",slug->getSLUG()->name);
         numberOfSlugsTillTurnOver--;
     }
+    delete slug;
 }
 
-Slug * TurnManager::getClosestEnemy(){
-    int managersLeft = turnManagerList->getSize() - 1;
-    managersLeft--;
-    Slug * closest;
-    int dist = 0;
-    while(managersLeft--){
-        TurnManager * list = turnManagerList->next();
-        if((list->team & team) == 0){
-            if(dist == 0){
-                //TODO
+SlugSegment * TurnManager::getClosestEnemy(Slug * closeTo){
+    int managersLeft = turnManagerList->getSize();
+    if(managersLeft > 0){
+        managersLeft--;
+        int dist = 0x0FFFFFFF;
+        SlugSegment * closest = NULL;
+        while(managersLeft--){
+            TurnManager * manager = turnManagerList->next();
+            if((manager->team & team) == 0){
+                closest = manager->segmentMap->closestTo(closeTo->getX(), closeTo->getY(), dist);
             }
         }
+        turnManagerList->next();
+        return closest;
     }
-    turnManagerList->next();
     return NULL;
 }
 
@@ -82,9 +86,11 @@ void TurnManager::newTurn(){
         slugsToWake--;
         managedSlugs->next()->newTurn();
     }
-    Slug* next = managedSlugs->next();
-    slugController->setSlug(next);
-    map->focusSlug = next;
+    if(numberOfSlugsTillTurnOver!=0){
+        Slug* next = managedSlugs->next();
+        map->focusSlug = next;
+        slugController->setSlug(next);
+    }
 }
 
 void TurnManager::slugDone(){
@@ -98,7 +104,7 @@ void TurnManager::slugDone(){
         while (next->controlMode == CONTROLLER_MODE_INVALID) {
             next = managedSlugs->next();
         }
-        slugController->setSlug(next);
         map->focusSlug = next;
+        slugController->setSlug(next);
     }
 }

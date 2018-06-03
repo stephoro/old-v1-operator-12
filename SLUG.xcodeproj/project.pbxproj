@@ -14,6 +14,7 @@
 		1822B9311D3854C300A45F8F /* BinaryHeap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1822B92F1D3854C300A45F8F /* BinaryHeap.cpp */; };
 		1822B9341D39153A00A45F8F /* AStar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1822B9321D39153A00A45F8F /* AStar.cpp */; };
 		1822B9371D3A8CB200A45F8F /* QuadTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1822B9351D3A8CB200A45F8F /* QuadTree.cpp */; };
+		1822B9391D3C2AC100A45F8F /* ideas.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1822B9381D3C2AC100A45F8F /* ideas.txt */; };
 		1828026F1C9BB0F9003FF056 /* FileEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1828026D1C9BB0F9003FF056 /* FileEditor.cpp */; };
 		182802721C9CC31E003FF056 /* SlugData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182802701C9CC31E003FF056 /* SlugData.cpp */; };
 		182802781C9D975A003FF056 /* SlugAttack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182802761C9D975A003FF056 /* SlugAttack.cpp */; };
@@ -102,6 +103,7 @@
 		1822B9331D39153A00A45F8F /* AStar.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AStar.hpp; sourceTree = "<group>"; };
 		1822B9351D3A8CB200A45F8F /* QuadTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuadTree.cpp; sourceTree = "<group>"; };
 		1822B9361D3A8CB200A45F8F /* QuadTree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = QuadTree.hpp; sourceTree = "<group>"; };
+		1822B9381D3C2AC100A45F8F /* ideas.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ideas.txt; sourceTree = "<group>"; };
 		1828026D1C9BB0F9003FF056 /* FileEditor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileEditor.cpp; sourceTree = "<group>"; };
 		1828026E1C9BB0F9003FF056 /* FileEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileEditor.h; sourceTree = "<group>"; };
 		182802701C9CC31E003FF056 /* SlugData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SlugData.cpp; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 				FD77A07E0E26BDA900F39101 /* Default.png */,
 				FD77A07C0E26BD8C00F39101 /* Icon.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
+				1822B9381D3C2AC100A45F8F /* ideas.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 				FD77A07D0E26BD8C00F39101 /* Icon.png in Resources */,
 				FD77A07F0E26BDA900F39101 /* Default.png in Resources */,
 				945C4F53195AF17F00DBBF61 /* Default-568h@2x.png in Resources */,
+				1822B9391D3C2AC100A45F8F /* ideas.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

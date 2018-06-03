@@ -264,8 +264,7 @@ bool SlugSpawnOther::commit(Slug *sender, Slug *reciever, int x, int y){
     if(file != NULL){
         SlugData * data = file->archetypesHash->get(slugname);
         if(data != NULL){
-            Slug * slug = new Slug(28, 4, x, y, data);
-            sender->manager->addSlug(slug);
+            Slug * slug = new Slug(28, 4, x, y, data, sender->manager);
             slug->isDone = true;
             sender->manager->numberOfSlugsTillTurnOver--;
         }else{

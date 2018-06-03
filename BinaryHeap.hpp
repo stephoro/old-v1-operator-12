@@ -190,6 +190,7 @@ public:
             if(nodes[l] == thing)
                 return l;
         }
+        return -1;
     }
     
     int getFill(){
@@ -199,6 +200,7 @@ public:
     //meant only if new value is smaller
     void rescoreIndex(int index, int value){
         int parent = index >> 1;
+        values[index] = value;
         int pval = values[parent];
         Obj * temp;
         while(pval > value){

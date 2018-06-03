@@ -11,7 +11,8 @@
 #include "Sprite.h"
 #include "SlugController.h"
 
-Slug::Slug(int size, int inset, int x, int y, SlugData * data){
+Slug::Slug(int size, int inset, int x, int y, SlugData * data, TurnManager * manager){
+    this->manager = manager;
     myData = data->copy();
     this->segments = new LinkedList<SlugSegment>();
     SLUG * proto = myData->prototype;
@@ -36,6 +37,11 @@ Slug::Slug(int size, int inset, int x, int y, SlugData * data){
     sprite = myData->texture;
     controlMode = CONTROLLER_MODE_INVALID;
     isCrippled = false;
+    
+    if(manager != NULL){
+        manager->addSlug(this);
+        manager->segmentMap->insert(head, x, y);
+    }
 }
 
 const SLUG * Slug::getSLUG(){
@@ -76,17 +82,20 @@ Slug::~Slug(){
     SlugSegment * first;
     while (segments->getSize()>0) {
         first = segments->removeFirst();
-        map->setSlug(NULL, first->x, first->y);
+        int x = first->x, y = first->y;
+        manager->segmentMap->remove(first, x, y);
+        map->setSlug(NULL, x, y);
     }
     delete segments;
 }
 
 void Slug::removeChunk(){
-    SlugSegment * first = segments->getFirst();
+    SlugSegment * first = segments->removeFirst();
     int x = first->x;
     int y = first->y;
+    manager->segmentMap->remove(first, x, y);
     map->setSlug(NULL, x, y);
-    segments->removeFirst();
+
     int pt = y - 1;
     if(map->pointValid(x, pt)){
         SlugSegment * segment = map->getSlug(x, pt);
@@ -172,6 +181,7 @@ void Slug::grow(int number, bool addSegments, bool overflow, bool increaseMax){
                 if(isNull){
                     atPos = new SlugSegment(this, 0, size, inset, ax, ay, false);
                     map->setSlug(atPos, ax, ay);
+                    manager->segmentMap->insert(atPos, ax, ay);
                     temp->add(atPos);
                     addConnections(ax, ay, atPos);
                     number--;
@@ -257,6 +267,7 @@ void Slug::move(int dir){
             if(!isSelf){
                 atPos = new SlugSegment(this, 0, size, inset, toX, toY, false);
                 map->setSlug(atPos, toX, toY);
+                manager->segmentMap->insert(atPos, toX, toY);
                 atPos->reference = segments->add(atPos);
                 currentSize++;
             }else{

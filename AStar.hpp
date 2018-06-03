@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "Map.h"
 #include "BinaryHeap.hpp"
+#include "Slug.h"
 
 class Position{
 public:
@@ -41,9 +42,14 @@ public:
     Position * parent;
 };
 
-int manhatten(Position * start, Position * end);
-
-
+inline int manhatten(const Position * start, const Position * end){
+    int v = end->x - start->x;
+    if(v<0)v=-v;
+    int c = end->y - start->y;
+    if(c<0)c=-c;
+    //printf("(%i %i,%i %i)->(%i+%i) = %i\n",start->x,start->y,end->x,end->y,v,c,c+v);
+    return c+v;
+}
 class AStarSearch{
 private:
     int width, height;
@@ -59,11 +65,11 @@ private:
         int b = len;
         Position ** path = new Position*[len+1];
         while(b--){
-            path[b] = currentNode;
+            path[b] = currentNode->copy();
             currentNode = currentNode->parent;
         }
         path[len] = NULL;
-        return NULL;
+        return path;
     }
     void blankGrid(){
         if(grid != NULL)
@@ -98,7 +104,8 @@ private:
         grid = NULL;
     }
     //must return new objects if null;
-    Position ** getNeighbors(Position *node, int & length){
+    Position ** getNeighbors(Position *node, int & length, bool & foundExit){
+        foundExit = false;
         length = 0;
         int max = 4;
         Position ** neighbors = new Position*[max];
@@ -128,12 +135,33 @@ private:
             int ax =x+dx;
             int ay =y+dy;
             int status = map->isOccupied(ax, ay, inquisitor);
+            //printf("Testing: (%i %i) is: 0x%x\n",ax,ay,status);
+            //printf("Result: 0x%x & 0x%x == 0x%x\n",status,(MAP_TILE_EMPTY|MAP_TILE_OCCUPIED_SELF),status&(MAP_TILE_EMPTY|MAP_TILE_OCCUPIED_SELF));
             if(status&(MAP_TILE_EMPTY|MAP_TILE_OCCUPIED_SELF)){
                 Position * neighbor = grid[ax][ay];
                 if(neighbor == NULL)
                     neighbor = grid[ax][ay] = new Position(ax,ay);
-                if(!neighbor->closed)
+                if(!neighbor->closed){
                     neighbors[length++] = neighbor;
+                }else{
+                    printf("Closed!\n");
+                }
+            }else if((status&MAP_TILE_OCCUPIED_OTHER)){
+                SlugSegment * other = map->getSlug(ax, ay);
+                if(other != NULL && inquisitor != NULL){
+                    if(!(other->getOwner()->team & inquisitor->team)){
+                        Position * neighbor = grid[ax][ay];
+                        if(neighbor == NULL)
+                            neighbor = grid[ax][ay] = new Position(ax,ay);
+                        if(!neighbor->closed){
+                            neighbors[0] = neighbor;
+                            foundExit = true;
+                            return neighbors;
+                        }else{
+                            printf("Closed!\n");
+                        }
+                    }
+                }
             }
         }
         
@@ -161,6 +189,8 @@ public:
             Position ** ret = new Position*[2];
             ret[0] = start->copy();
             ret[1] = NULL;
+            returnLength = 1;
+            printf("early return\n");
             delete start;
             delete end;
             return ret;
@@ -183,13 +213,14 @@ public:
         
         BinaryHeap<Position> * openHeap = new BinaryHeap<Position>();
         openHeap->add(start, start->f);
-        
+        printf("fill: %i\n",openHeap->getFill());
         while (openHeap->getFill() > 0) {
             
             // Grab the lowest f(x) to process next.  Heap keeps this sorted for us.
             Position * currentNode = openHeap->remove();
             // End case -- result has been found, return the traced path.
             if (currentNode == end) {
+                printf("best return\n");
                 return pathTo(currentNode, returnLength);
             }
             
@@ -198,8 +229,15 @@ public:
             
             // Find all neighbors for the current node. Optionally find diagonal neighbors as well (false by default).
             int len;
-            Position ** neighbors = getNeighbors(currentNode, len);
-            
+            bool isExit = false;
+            Position ** neighbors = getNeighbors(currentNode, len, isExit);
+            if(isExit){
+                closest = neighbors[0];
+                closest->parent = currentNode;
+                delete [] neighbors;
+                break;
+            }
+            printf("Num Neighbors: %i\n",len);
             for (int i = 0; i < len; i++) {
                 Position * neighbor = neighbors[i];
                 
@@ -210,15 +248,17 @@ public:
                 bool beenVisited = neighbor->visited;
                 
                 if (!beenVisited || gScore < neighbor->g) {
-                    
                     // Found an optimal (so far) path to this node.  Take score for node to see how good it is.
                     neighbor->visited = true;
                     neighbor->parent = currentNode;
-                    neighbor->h = neighbor->h || manhatten(neighbor, end);
+                    if(!neighbor->h)
+                        neighbor->h = manhatten(neighbor, end);
                     neighbor->g = gScore;
                     neighbor->f = neighbor->g + neighbor->h;
+                    printf("Yay new! %i\n",neighbor->h);
                     
                     if (closest == NULL || neighbor->h < closest->h) {
+                        printf("Yay real new! %i\n",neighbor->h);
                         closest = neighbor;
                     }
                     if (!beenVisited) {
@@ -226,8 +266,10 @@ public:
                         openHeap->add(neighbor, neighbor->f);
                     } else {
                         // Already seen the node, but since it has been rescored we need to reorder it in the heap
+                        printf("rescoring an index!!!\n");
                         openHeap->rescoreIndex(openHeap->search(neighbor), neighbor->f);
                     }
+                    printf("onto the next one!\n");
                 }
             }
             delete [] neighbors;
@@ -235,18 +277,12 @@ public:
         
         delete openHeap;
         
-        // No result was found - empty array signifies failure to find path.
-        if (closest != NULL && closest != start) {
-            return pathTo(closest, returnLength);
-        }
-        
+        Position ** path = pathTo(closest, returnLength);
         sweepGrid(); // deletes positions, but not grid itself
         
-        
-        Position ** ret = new Position*[1];
-        ret[0] = NULL;
-        return ret;
-    }
+        return path;
+
+        }
 };
 
 

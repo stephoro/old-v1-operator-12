@@ -136,9 +136,7 @@ void btnAttack(){
 int
 main(int argc, char *argv[])
 {
-    AStarSearch * star = new AStarSearch();
-    delete star;
-    return 0;
+   
     
     //binary heap test
     /*BinaryHeap<int> * test = new BinaryHeap<int>();

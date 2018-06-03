@@ -10,7 +10,6 @@
 #include "TurnManager.h"
 #include "Swipable.hpp"
 #include "StringHelpers.h"
-
 extern float RETINA_FACTOR;
 
 
@@ -30,8 +29,9 @@ SlugController::SlugController(){
     actionMenu = NULL;
     interactionLayer = interactionStack->expandLayers();
     renderLayer = mainStack->expandLayers();
-    
-    
+    pathfinder = new AStarSearch();
+    foundPath = NULL;
+    pathlen = -1;
     
 }
 
@@ -48,6 +48,13 @@ SlugController::~SlugController(){
     delete movementSquare;
     if(actionMenu != NULL)
         delete actionMenu;
+    delete pathfinder;
+    if(foundPath != NULL){
+        int p = pathlen;
+        while(p--)
+            delete foundPath[p];
+        delete [] foundPath;
+    }
 }
 
 /**
@@ -337,11 +344,71 @@ void SlugController::renderSlugAttack(){
 
 void SlugController::setSlug(Slug *slug){
     this->slug = slug;
+    printf("Setting Slug!\n");
     if(slug != NULL){
         mode = slug->getControlMode();
         proto = slug->getSLUG();
         proto->actions->refocus();
         currentAction = slug->currentAction;
+        printf("Setting Slug! %i\n",slug->team);
+        if((slug->team & playerTeamMask)==0){
+            printf("enemy\n");
+            SlugSegment * closest = slug->manager->getClosestEnemy(slug);
+            if(closest == NULL){
+                printf("No Closest to search against!\n");
+                return;
+            }
+            printf("closest found\n");
+            
+            Position * start = new Position(slug->getX(),slug->getY());
+            Position * end = new Position(closest->x,closest->y);
+            printf("(%i %i) -> (%i %i)\n",slug->getX(),slug->getY(),closest->x,closest->y);
+            if(foundPath != NULL){
+                int p = pathlen;
+                while(p--)
+                    delete foundPath[p];
+                delete [] foundPath;
+            }
+            foundPath = pathfinder->search(map, slug, start, end, pathlen);
+            pathindex = 0;
+            printf("moving len: %i\n", pathlen);
+            for (pathindex = 0; pathindex < (pathlen-1) && slug->getMovesLeft(); pathindex++) {
+                
+                Position * cur = foundPath[pathindex];
+                Position * next = foundPath[pathindex + 1];
+                printf("(%i,%i) to (%i,%i)\n",cur->x,cur->y,next->x,next->y);
+                SlugSegment * atPos = map->getSlug(next->x,next->y);
+                if(atPos!=NULL){
+                    printf("ATTACK!!!\n");
+                    slug->startAttack();
+                    break;
+                }else{
+                    int dir = -1;
+                    int dx = next->x-cur->x;
+                    int dy = next->y-cur->y;
+                    if(dx > 0)
+                        dir = 1;
+                    else if(dx < 0)
+                        dir = 3;
+                    else if(dy > 0)
+                        dir = 2;
+                    else if(dy < 0)
+                        dir = 0;
+                    if(dir != -1){
+                        printf("moving dir: %i\n",dir);
+                        slug->move(dir);
+                    }else{
+                        printf("ATTACK!!!\n");
+                        slug->startAttack();
+                        break;
+                    }
+                }
+            }
+            if(slug->getMovesLeft()){
+                printf("ATTACK!!!\n");
+                slug->startAttack();
+            }
+        }
     }
 }
 
@@ -406,8 +473,9 @@ void SlugController::onChoice(int c){
     printf("choice %i\n",c);
     int ch = c - 2;
     if(ch < 0){
-        if(ch == -1)
+        if(ch == -1){
             slug->invalidate();
+        }
     }else{
         proto->actions->refocus();
         while(ch > 0){
@@ -417,7 +485,7 @@ void SlugController::onChoice(int c){
         currentAction = proto->actions->next();
         slug->currentAction = currentAction;
         slug->controlMode = CONTROLLER_MODE_ATTACK;
-
+        
     }
     hideMenu();
 }

@@ -17,6 +17,8 @@
 #include "DrawStack.h"
 #include "InputStack.h"
 #include "DropMenu.hpp"
+#include "AStar.hpp"
+
 const int CONTROLLER_MODE_INVALID = -1;
 const int CONTROLLER_MODE_MOVE = 0;
 const int CONTROLLER_MODE_ATTACK = 1;
@@ -54,7 +56,13 @@ private:
     inline bool handleSquare(int px, int py, bool draw);
     bool handlesMove(int x, int y);
     bool handlesAttack(int x, int y);
+    
+    AStarSearch * pathfinder;
+    Position ** foundPath;
+    int pathlen;
+    int pathindex;
 public:
+    Uint32 playerTeamMask;
     void onChoice(int c);
     void displayMenu();
     void hideMenu();
