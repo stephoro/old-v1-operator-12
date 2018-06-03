@@ -80,7 +80,7 @@ Map::Map(int tileWidth, int tileHeight, int width, int height, int tileSize, int
     this->height = height;
     this->size = width*height;
     
-    objects = new SlugArray[width];
+    objects = new SlugSegment**[width];
     for(int x = 0; x < width; x++){
         SlugSegment ** row = objects[x] = new SlugSegment*[height];
         for(int y = 0; y < height; y++){

@@ -12,7 +12,9 @@
 #include "SlugController.h"
 extern SlugController * slugController;
 
-TurnManager::TurnManager(){
+TurnManager::TurnManager(Uint32 team){
+    this->team = team;
+    segmentMap = new QuadTree<SlugSegment>(0,0,map->width,map->height);
     if(turnManagerList == NULL){
         turnManagerList = new LinkedList<TurnManager>();
     }
@@ -23,6 +25,7 @@ TurnManager::TurnManager(){
 }
 
 TurnManager::~TurnManager(){
+    delete segmentMap;
     if(turnManagerList != NULL){
         delete turnManagerList;
         turnManagerList = NULL;
@@ -36,6 +39,7 @@ bool TurnManager::isOwnTurn(){
 }
 
 void TurnManager::addSlug(Slug *slug){
+    slug->team |= team;
     slug->nodeRef = managedSlugs->add(slug);
     slug->manager = this;
     numberOfSlugsTillTurnOver++;
@@ -46,6 +50,23 @@ void TurnManager::removeSlug(Slug *slug){
     if(!slug->getIsDone()){
         numberOfSlugsTillTurnOver--;
     }
+}
+
+Slug * TurnManager::getClosestEnemy(){
+    int managersLeft = turnManagerList->getSize() - 1;
+    managersLeft--;
+    Slug * closest;
+    int dist = 0;
+    while(managersLeft--){
+        TurnManager * list = turnManagerList->next();
+        if((list->team & team) == 0){
+            if(dist == 0){
+                //TODO
+            }
+        }
+    }
+    turnManagerList->next();
+    return NULL;
 }
 
 bool TurnManager::isOwnedSlug(Slug * slug){

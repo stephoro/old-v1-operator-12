@@ -84,8 +84,8 @@ int gameplayMain(){
     interactionStack = new InputStack();
     InputLayer * interactionLayer = interactionStack->expandLayers();
     DrawLayer * mapLayer = mainStack->expandLayers();
-    playerTurnManager = new TurnManager();
-    TurnManager * enemyTurnManager = new TurnManager();
+    playerTurnManager = new TurnManager(0x1);
+    TurnManager * enemyTurnManager = new TurnManager(0x2);
     
     
     mapLayer->add(map);

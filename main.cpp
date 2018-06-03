@@ -39,7 +39,8 @@
 #include "gameplay.h"
 #include "SDL_ttf.h"
 #include "Hashmap.hpp"
-
+#include "BinaryHeap.hpp"
+#include "AStar.hpp"
 HashMap<SlugFile> * SlugFileSystem;
 TTF_Font * menuFont;
 Swipable * swiper;
@@ -135,6 +136,46 @@ void btnAttack(){
 int
 main(int argc, char *argv[])
 {
+    AStarSearch * star = new AStarSearch();
+    delete star;
+    return 0;
+    
+    //binary heap test
+    /*BinaryHeap<int> * test = new BinaryHeap<int>();
+    test->printIndexes(0, 0);
+    test->add(NULL, 9);
+    test->printIndexes(0, 0);
+    test->add(NULL, 4);
+    test->printIndexes(0, 0);
+    test->add(NULL, -1);
+    test->printIndexes(0, 0);
+    test->add(NULL, -12);
+    test->printIndexes(0, 0);
+    test->add(NULL, 2);
+    test->printIndexes(0, 0);
+    test->add(NULL, 5);
+    test->printIndexes(0, 0);
+    
+    test->remove();
+    test->printIndexes(0, 0);
+    test->remove();
+    test->printIndexes(0, 0);
+    test->remove();
+    test->printIndexes(0, 0);
+    test->remove();
+    test->printIndexes(0, 0);
+    test->remove();
+    test->printIndexes(0, 0);
+    test->remove();
+    test->printIndexes(0, 0);
+    test->remove();
+    test->printIndexes(0, 0);
+
+    delete test;
+    return 0;*/
+    
+    
+    
     needsDisplay = 1;
     testALL();
     

@@ -17,6 +17,7 @@
 #include "Drawable.h"
 #include "Swipable.hpp"
 #include "Interactable.h"
+#include "QuadTree.hpp"
 extern bool isRetina;
 extern SDL_Renderer * globalRenderer;
 extern SDL_Rect screenBounds;
@@ -25,7 +26,6 @@ extern SDL_Rect screenBounds;
 extern int needsDisplay;
 
 class SlugController;
-typedef SlugSegment** SlugArray;
 
 const int MAP_TILE_NON_EXISTENT = 0x2;
 const int MAP_TILE_UNKNOWN = 0x0;
@@ -38,14 +38,14 @@ class Map : public Drawable, public Interactable, public Swipable{
 private:
     SpriteSheet * backgroundSheet;
     /** the objects (slug segments) at each point of the map */
-    SlugArray * objects;
-    int width, height, size, tileSize, inset;
+    SlugSegment *** objects;
     /** where the map displays on the screen, also its hitbox */
     SDL_Rect rect;
     SDL_Rect drawRect;
     int ** mapSquares;
     int offsetX, offsetY;
 public:
+    int width, height, size, tileSize, inset;
     void addOffsetX(int delta);
     void addOffsetY(int delta);
     /** static background */

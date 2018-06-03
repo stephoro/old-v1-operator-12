@@ -37,6 +37,7 @@ private:
     void addConnections(int toX, int toY, SlugSegment * inquisitor);
     int maxSize;
 public:
+    Uint32 team;
     bool isDone;
     int getMaxSize();
     void setMaxSize(int s);

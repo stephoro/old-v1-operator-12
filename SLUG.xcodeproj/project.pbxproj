@@ -11,6 +11,9 @@
 		1818776D1C9ED6A300B4F9AC /* SLUG_Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1818776B1C9ED6A300B4F9AC /* SLUG_Button.cpp */; };
 		1822B9271D356B9300A45F8F /* Hashmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1822B9251D356B9300A45F8F /* Hashmap.cpp */; };
 		1822B92E1D36D3AD00A45F8F /* AudioPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1822B92C1D36D3AD00A45F8F /* AudioPlayer.cpp */; };
+		1822B9311D3854C300A45F8F /* BinaryHeap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1822B92F1D3854C300A45F8F /* BinaryHeap.cpp */; };
+		1822B9341D39153A00A45F8F /* AStar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1822B9321D39153A00A45F8F /* AStar.cpp */; };
+		1822B9371D3A8CB200A45F8F /* QuadTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1822B9351D3A8CB200A45F8F /* QuadTree.cpp */; };
 		1828026F1C9BB0F9003FF056 /* FileEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1828026D1C9BB0F9003FF056 /* FileEditor.cpp */; };
 		182802721C9CC31E003FF056 /* SlugData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182802701C9CC31E003FF056 /* SlugData.cpp */; };
 		182802781C9D975A003FF056 /* SlugAttack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182802761C9D975A003FF056 /* SlugAttack.cpp */; };
@@ -93,6 +96,12 @@
 		1822B9261D356B9300A45F8F /* Hashmap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Hashmap.hpp; sourceTree = "<group>"; };
 		1822B92C1D36D3AD00A45F8F /* AudioPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioPlayer.cpp; sourceTree = "<group>"; };
 		1822B92D1D36D3AD00A45F8F /* AudioPlayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AudioPlayer.hpp; sourceTree = "<group>"; };
+		1822B92F1D3854C300A45F8F /* BinaryHeap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinaryHeap.cpp; sourceTree = "<group>"; };
+		1822B9301D3854C300A45F8F /* BinaryHeap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BinaryHeap.hpp; sourceTree = "<group>"; };
+		1822B9321D39153A00A45F8F /* AStar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AStar.cpp; sourceTree = "<group>"; };
+		1822B9331D39153A00A45F8F /* AStar.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AStar.hpp; sourceTree = "<group>"; };
+		1822B9351D3A8CB200A45F8F /* QuadTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuadTree.cpp; sourceTree = "<group>"; };
+		1822B9361D3A8CB200A45F8F /* QuadTree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = QuadTree.hpp; sourceTree = "<group>"; };
 		1828026D1C9BB0F9003FF056 /* FileEditor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileEditor.cpp; sourceTree = "<group>"; };
 		1828026E1C9BB0F9003FF056 /* FileEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileEditor.h; sourceTree = "<group>"; };
 		182802701C9CC31E003FF056 /* SlugData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SlugData.cpp; sourceTree = "<group>"; };
@@ -203,6 +212,12 @@
 				18A4C0901C889EAF001BEA04 /* LinkedList.hpp */,
 				1822B9261D356B9300A45F8F /* Hashmap.hpp */,
 				1822B9251D356B9300A45F8F /* Hashmap.cpp */,
+				1822B9331D39153A00A45F8F /* AStar.hpp */,
+				1822B9321D39153A00A45F8F /* AStar.cpp */,
+				1822B9361D3A8CB200A45F8F /* QuadTree.hpp */,
+				1822B9351D3A8CB200A45F8F /* QuadTree.cpp */,
+				1822B9301D3854C300A45F8F /* BinaryHeap.hpp */,
+				1822B92F1D3854C300A45F8F /* BinaryHeap.cpp */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -520,6 +535,7 @@
 				18C18D271C964A4200C0A4D5 /* InputStack.cpp in Sources */,
 				18A4C0981C88E692001BEA04 /* Drawable.cpp in Sources */,
 				18A4C0921C889EAF001BEA04 /* LinkedList.hpp in Sources */,
+				1822B9311D3854C300A45F8F /* BinaryHeap.cpp in Sources */,
 				1845ADFA1C9468E100039FAB /* SlugSprite.cpp in Sources */,
 				18AB70741C8A60AB0026CDD0 /* TextureLoader.cpp in Sources */,
 				18CA00A31C9F3F7D00C160F6 /* gameplay.cpp in Sources */,
@@ -537,7 +553,9 @@
 				18ACF5571D330B4100F27AF1 /* Swipable.cpp in Sources */,
 				1845ADEC1C937E4F00039FAB /* DrawStack.cpp in Sources */,
 				1845AE061C9520D300039FAB /* SlugController.cpp in Sources */,
+				1822B9341D39153A00A45F8F /* AStar.cpp in Sources */,
 				1845AE031C9497DD00039FAB /* Test_Map.cpp in Sources */,
+				1822B9371D3A8CB200A45F8F /* QuadTree.cpp in Sources */,
 				18C18D241C96493A00C0A4D5 /* InputLayer.cpp in Sources */,
 				1803F3371D233237004CC4DA /* CharArray.cpp in Sources */,
 				1845AE001C94902E00039FAB /* SlugSegment.cpp in Sources */,

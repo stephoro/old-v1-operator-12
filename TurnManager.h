@@ -11,7 +11,9 @@
 
 #include <stdio.h>
 #include "LinkedList.hpp"
-
+#include "SDL.h"
+#include "QuadTree.hpp"
+#include "SlugSegment.h"
 class Slug;
 class TurnManager;
 class Map;
@@ -21,9 +23,13 @@ extern LinkedList<TurnManager> * turnManagerList;
 
 class TurnManager{
 private:
-    LinkedList<Slug> * managedSlugs;
     bool isMyTurn;
+protected:
+    Uint32 team;
+    LinkedList<Slug> * managedSlugs;
+    QuadTree<SlugSegment> * segmentMap;
 public:
+    Slug * getClosestEnemy();
     int numberOfSlugsTillTurnOver;
     LinkedList<TurnManager>::Node<TurnManager> * nodeRef;
     bool isOwnedSlug(Slug * slug);
@@ -32,7 +38,7 @@ public:
     void addSlug(Slug * slug);
     void removeSlug(Slug * slug);
     void slugDone();
-    TurnManager();
+    TurnManager(Uint32 team);
     ~TurnManager();
 };
 
